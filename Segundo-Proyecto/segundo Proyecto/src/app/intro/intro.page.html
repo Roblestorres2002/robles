@@ -1,11 +1,3 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title class="ion-title ion-text-center">
-      <ion-card-title>Tomorrowland</ion-card-title>
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -14,76 +6,16 @@
   </ion-header>
 
   <swiper-container [loop]="true" [pagination]="true" class="swiper-container">
-    <swiper-slide>
+    <swiper-slide *ngFor="let item of items; let i = index">
       <ion-card>
         <ion-card-header>
-          <ion-card-title>Bienvenido a Tomorrowland</ion-card-title>
+          <ion-card-title>{{ item.title }}</ion-card-title>
         </ion-card-header>
-        <ion-img src="https://www.infobae.com/new-resizer/4gjVeolN9K6RbtnO3DlSzzTb4fw=/768x1024/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/ZDN6YUYEWFEMPKATAIYOZQ5PHM.jpg"></ion-img>
-        
-        <ion-img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPvo2MTVkFS7le2abOkNNF2O6fu9z-z8kJkWlUoC6ob_1K2pDxjSNmSOePcnTej09HEyw&usqp=CAU"></ion-img>
+        <ion-img *ngFor="let image of item.images" [src]="image"></ion-img>
         <ion-card-content>
-          <p>Descubre la magia de Tomorrowland, un festival que fusiona la música electrónica con un mundo encantado.</p>
-         </ion-card-content>
-        </ion-card>
-    
-    </swiper-slide>
-    <swiper-slide>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Próximo Eventos</ion-card-title>
-          
-        </ion-card-header>
-        <ion-img src="https://a1.elespanol.com/metropoliabierta/2023/11/06/vivir-en-barcelona/807679333_11836948_1706x960.jpg"></ion-img>
-        <ion-img src="https://estaticos.elcolombiano.com/binrepository/1200x675/0c24/1200d627/none/11101/VSVT/tomorrowland22_42878230_20230722084440.jpg"></ion-img>
-        <ion-img src="https://cdn.latinus.us/wp-content/uploads/2021/05/05191825/tomorrowland-festival-electronica-virtual-covid-1024x529.jpg"></ion-img>
-        
-        <ion-img src="https://img.ticketero.app/i/teams/boletos%20tomorrowland.jpg"></ion-img>
-        <ion-card-content>
-          <p>Explora nuestra lista de próximos eventos y encuentra tus favoritos. ¡No te pierdas la emoción!</p>
+          <p>{{ item.description }}</p>
         </ion-card-content>
-      </ion-card>
-    </swiper-slide>
-    
-
-    <swiper-slide>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Contacto</ion-card-title>
-        </ion-card-header>
-        <ion-img src="data:image/jpeg;base64,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"></ion-img>
-        <ion-card-content>
-          <p>¿Tienes preguntas? Contáctanos para obtener más información o resolver tus dudas. Estamos aquí para ayudarte.</p>
-          
-          <div class="contact-info">
-            
-            <p>Numero :
-              +57 3244134505</p>
-          </div>
-
-          <div class="contact-info">
-           
-            <p>Correo :
-              :andresjesus&#64;gmail.com</p>
-          </div>
-        </ion-card-content>
-      </ion-card>
-    </swiper-slide>
-
-    <swiper-slide>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>General Admission  </ion-card-title>
-        </ion-card-header>
-        <ion-img src="https://nohasvividosi.com/wp-content/uploads/2020/03/exchange-desk-tomorrowland.jpg"></ion-img>
-        <ion-card-title>Asientos Numerados </ion-card-title>
-        <ion-img src="https://img.youtube.com/vi/6uW7_9mtf08/0.jpg"></ion-img>
-        <ion-card-title>Zonas VIP  </ion-card-title>
-        <ion-img src="https://lirp.cdn-website.com/a9798491/dms3rep/multi/opt/TOMORROWLAND-Entradas-600w.jpg"></ion-img>
-        <ion-card-content>
-          <p>Asegura tu lugar en los mejores eventos. ¡Compra tus boletas ahora y vive experiencias inolvidables!</p>
-          <ion-button expand="full" (click)="navigateToHome()">Ir a Home </ion-button>
-        </ion-card-content>
+        <ion-button *ngIf="i === 2" expand="full" (click)="navigateToHome()">Ir a Home</ion-button>
       </ion-card>
     </swiper-slide>
   </swiper-container>

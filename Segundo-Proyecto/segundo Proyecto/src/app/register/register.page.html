@@ -18,20 +18,47 @@
       <ion-input label="Email" labelPlacement="floating" placeholder="Email" formControlName="email"></ion-input>
       <ion-input label="Nombre" labelPlacement="floating" placeholder="Nombre" formControlName="name"></ion-input>
       <ion-input label="Apellido" labelPlacement="floating" placeholder="Apellido" formControlName="last_name"></ion-input>
-      <ion-input label="Contraseña" labelPlacement="floating" placeholder="Contraseña" formControlName="password"></ion-input>
-      <ion-input label="Confirme Contraseña" labelPlacement="floating" placeholder="Confirme Contraseña" formControlName="confirmation_password"></ion-input>
-      <div *ngIf="registerForm.get('password')?.value !== registerForm.get('confirmation_password')?.value && registerForm.get('confirmation_password')?.dirty" class="error-message">
-        Las contraseñas no coinciden
-      </div>
-    </ion-item>   
-    <ion-button
-      expand="full"
-      shape="round"
+      <ion-input label="Contraseña" labelPlacement="floating" placeholder="Contraseña" formControlName="password" type="password"></ion-input>
+      <ion-input label="Confirme Contraseña" labelPlacement="floating" placeholder="Confirme Contraseña" formControlName="confirmation_password" type="password"></ion-input>
+    </ion-item>
+    <!-- Validaciones para el campo de Email -->
+    <div class="validation-message">
+      <ng-container *ngFor="let validation of validation_messages.email">
+        <div *ngIf="registerForm.get('email')?.hasError(validation.type) && registerForm.get('email')?.dirty">{{validation.message}}</div>
+      </ng-container>
+    </div>
+    <!-- Validaciones para el campo de Nombre -->
+    <div class="validation-message">
+      <ng-container *ngFor="let validation of validation_messages.name">
+        <div *ngIf="registerForm.get('name')?.hasError(validation.type) && registerForm.get('name')?.dirty">{{validation.message}}</div>
+      </ng-container>
+    </div>
+    <!-- Validaciones para el campo de Apellido -->
+    <div class="validation-message">
+      <ng-container *ngFor="let validation of validation_messages.last_name">
+        <div *ngIf="registerForm.get('last_name')?.hasError(validation.type) && registerForm.get('last_name')?.dirty">{{validation.message}}</div>
+      </ng-container>
+    </div>
+    <!-- Validaciones para el campo de Contraseña -->
+    <div class="validation-message">
+      <ng-container *ngFor="let validation of validation_messages.password">
+        <div *ngIf="registerForm.get('password')?.hasError(validation.type) && registerForm.get('password')?.dirty">{{validation.message}}</div>
+      </ng-container>
+    </div>
+    <!-- Validaciones para el campo de Confirmación de Contraseña -->
+    <div class="validation-message">
+      <ng-container *ngFor="let validation of validation_messages.confirmation_password">
+        <div *ngIf="registerForm.get('confirmation_password')?.hasError(validation.type) && registerForm.get('confirmation_password')?.dirty">{{validation.message}}</div>
+      </ng-container>
+    </div>
+    <!-- Botón de registro -->
+    <ion-button 
+      type="submit" 
+      [disabled]="!registerForm.valid"
       color="success"
-      [disabled]="!registerForm.valid || (registerForm.get('password')?.value !== registerForm.get('confirmation_password')?.value)"
-      type="submit"
-    >
-      Ingresa tus datos por favor 
-    </ion-button>
+      shape="round"
+      expand="full"
+    >Ingresa tus datos por favor</ion-button>
   </form>
+  
 </ion-content>
