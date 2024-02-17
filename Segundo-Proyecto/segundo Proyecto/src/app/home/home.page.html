@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="end">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="warm-theme">
+  <swiper-container
+  [pagination]="true"
+  [slidesPerView]="1"
+  >
+  <swiper-slide *ngFor="let slide of event_list">
+      <ion-card>
+          <img [src]="slide.image">
+          <ion-card-header>
+            <ion-card-title>{{slide.name}}</ion-card-title>
+          </ion-card-header>
+          <p>{{slide.description}}</p> 
+          <p>{{slide.event_date}}</p> 
+          <p>{{slide.location}}</p> 
+          <p>{{slide.address}}</p> 
+          <p>{{slide.city}}</p> 
+      </ion-card>
+      </swiper-slide>
+  </swiper-container>
+
+  <ion-list>
+    <ion-list-header>
+      Categorías
+    </ion-list-header>
+    <ion-item *ngFor="let category of categories">
+      {{category.name}}
+    </ion-item>
+  </ion-list>
+</ion-content>
